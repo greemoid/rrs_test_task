@@ -1,49 +1,16 @@
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'gadget_data_model.dart';
+part 'gadget_model.freezed.dart';
+part 'gadget_model.g.dart';
 
-/// id : "1"
-/// name : "Google Pixel 6 Pro"
-/// data : {"color":"Cloudy White","capacity":"128 GB"}
+@freezed
+abstract class GadgetModel with _$GadgetModel {
+  const factory GadgetModel({
+    required String id,
+    required String name,
+    Map<String, dynamic>? data,
+  }) = _GadgetModel;
 
-GadgetModel gadgetModelFromJson(String str) =>
-    GadgetModel.fromJson(json.decode(str));
-
-String gadgetModelToJson(GadgetModel data) => json.encode(data.toJson());
-
-class GadgetModel {
-  GadgetModel({String? id, String? name, GadgetDataModel? data}) {
-    _id = id;
-    _name = name;
-    _data = data;
-  }
-
-  GadgetModel.fromJson(dynamic json) {
-    _id = json['id'];
-    _name = json['name'];
-    _data = json['data'] != null ? GadgetDataModel.fromJson(json['data']) : null;
-  }
-
-  String? _id;
-  String? _name;
-  GadgetDataModel? _data;
-
-  GadgetModel copyWith({String? id, String? name, GadgetDataModel? data}) =>
-      GadgetModel(id: id ?? _id, name: name ?? _name, data: data ?? _data);
-
-  String? get id => _id;
-
-  String? get name => _name;
-
-  GadgetDataModel? get data => _data;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = _id;
-    map['name'] = _name;
-    if (_data != null) {
-      map['data'] = _data?.toJson();
-    }
-    return map;
-  }
+  factory GadgetModel.fromJson(Map<String, dynamic> json) =>
+      _$GadgetModelFromJson(json);
 }
