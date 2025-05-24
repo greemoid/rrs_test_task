@@ -11,11 +11,12 @@ class ExpandableGadgetCardWidget extends StatefulWidget {
   });
 
   @override
-  State<ExpandableGadgetCardWidget> createState() => _ExpandableGadgetCardWidgetState();
+  State<ExpandableGadgetCardWidget> createState() =>
+      _ExpandableGadgetCardWidgetState();
 }
 
-class _ExpandableGadgetCardWidgetState extends State<ExpandableGadgetCardWidget>
-    with SingleTickerProviderStateMixin {
+class _ExpandableGadgetCardWidgetState
+    extends State<ExpandableGadgetCardWidget> {
   bool _isExpanded = false;
 
   @override
