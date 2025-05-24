@@ -3,6 +3,7 @@ import 'package:rrs_test_task/core/failures/failure.dart';
 import 'package:rrs_test_task/data/mappers/gadget_model_to_gadget_mapper.dart';
 import 'package:rrs_test_task/domain/entities/gadget.dart';
 
+import '../../core/failures/exception_mapper.dart';
 import '../../domain/repositories/gadget_repository.dart';
 import '../datasources/gadget_network_datasource.dart';
 
@@ -18,8 +19,10 @@ class GadgetRepositoryImpl implements GadgetRepository {
     try {
       final gadgets = await _gadgetNetworkDatasource.getGadgets();
       return right(gadgets.map((e) => e.toDomain()).toList());
-    } catch (e) {
-      return left(Failure(e.toString()));
+    } catch (e, st) {
+      final failure = mapExceptionToFailure(e, st);
+
+      return left(failure);
     }
   }
 }

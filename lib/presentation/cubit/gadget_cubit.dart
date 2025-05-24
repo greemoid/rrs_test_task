@@ -18,8 +18,8 @@ class GadgetCubit extends Cubit<GadgetState> {
     emit(GadgetLoading());
     final result = await _gadgetRepository.getGadgets();
     result.fold(
-      (l) => emit(GadgetError(l.message)),
-      (r) => emit(GadgetLoaded(r)),
+      (failure) => emit(GadgetError(failure.message)),
+      (gadgets) => emit(GadgetLoaded(gadgets)),
     );
   }
 }
