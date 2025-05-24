@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rrs_test_task/core/extensions/string_casing_extension.dart';
 
 class ExpandableGadgetCardWidget extends StatefulWidget {
   final String title;
@@ -90,7 +91,7 @@ class _ExpandableGadgetCardWidgetState
                                       ),
                                       Expanded(
                                         child: Text(
-                                          '${entry.key}: ${entry.value}',
+                                          '${entry.key.capitalize()}: ${entry.value}',
                                           style: theme.textTheme.bodyMedium,
                                         ),
                                       ),
