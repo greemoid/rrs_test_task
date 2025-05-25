@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:rrs_test_task/core/extensions/string_casing_extension.dart';
 
+import '../utils/get_color_from_name.dart';
+
 class ExpandableGadgetCardWidget extends StatefulWidget {
-  final String title;
+  final String name;
   final Map<String, dynamic> data;
 
   const ExpandableGadgetCardWidget({
     super.key,
-    required this.title,
+    required this.name,
     required this.data,
   });
 
@@ -49,7 +51,7 @@ class _ExpandableGadgetCardWidgetState
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.title,
+                        widget.name,
                         style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -77,24 +79,51 @@ class _ExpandableGadgetCardWidgetState
                           : Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: widget.data.entries.map((entry) {
+                                final key = entry.key.capitalize();
+                                final value = entry.value.toString();
+                                final isColorField = key.toLowerCase().contains(
+                                  'color',
+                                );
+                                final colorValue = getColorFromName(value);
+
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 2,
                                   ),
                                   child: Row(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      const Text(
-                                        '• ',
-                                        style: TextStyle(fontSize: 16),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          '${entry.key.capitalize()}: ${entry.value}',
-                                          style: theme.textTheme.bodyMedium,
+                                      if (isColorField && colorValue != null)
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '$key: ',
+                                              style: theme.textTheme.bodyMedium,
+                                            ),
+                                            Container(
+                                              width: 16,
+                                              height: 16,
+                                              margin: const EdgeInsets.only(
+                                                left: 4,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: colorValue,
+                                                border: Border.all(
+                                                  color: Colors.black12,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      else
+                                        Expanded(
+                                          child: Text(
+                                            '$key: $value',
+                                            style: theme.textTheme.bodyMedium,
+                                          ),
                                         ),
-                                      ),
                                     ],
                                   ),
                                 );

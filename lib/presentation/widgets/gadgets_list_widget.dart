@@ -14,7 +14,7 @@ class GadgetsListWidget extends StatelessWidget {
       itemCount: gadgets.length,
       itemBuilder: (context, index) {
         return ExpandableGadgetCardWidget(
-          title: gadgets[index].name,
+          name: gadgets[index].name,
           data: gadgets[index].data,
         );
       },

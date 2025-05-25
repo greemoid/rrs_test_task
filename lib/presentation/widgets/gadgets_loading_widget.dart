@@ -12,7 +12,7 @@ class GadgetsLoadingWidget extends StatelessWidget {
       child: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-          return ExpandableGadgetCardWidget(title: 'Iphone 11 pro', data: {});
+          return ExpandableGadgetCardWidget(name: 'Iphone 11 pro', data: {});
         },
       ),
     );
