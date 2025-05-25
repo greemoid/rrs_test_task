@@ -1,16 +1,25 @@
-# rrs_test_task
+# Red Rocket Software Test Task
+A simple Flutter application that loads a list of gadgets from the network and displays them in an interactive list.
 
-A new Flutter project.
+# Demo
+https://github.com/user-attachments/assets/f6bf7e2c-3f4a-47b7-945b-3b9a765d2b21
 
-## Getting Started
+`Sorry for low FPS demo :(`
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+# Tech Stack
+Key packages used in the project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- `flutter_bloc` – state management using the BLoC pattern.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- `get_it` – service locator for easy dependency injection.
+
+- `retrofit + dio` – HTTP client for network requests.
+
+- `freezed + json_serializable` – for generating immutable data models and handling JSON serialization.
+
+- `skeletonizer` – to show loading skeletons while waiting for data.
+
+- `mocktail + http_mock_adapter` – for mocking dependencies and HTTP responses in unit tests.
+
+- `bloc_test` – for testing BLoC states and events.
